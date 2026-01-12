@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Home</title>
+</head>
+
+<body>
+    <div id="toast-container"></div>
+    <div class="home_box">
+        <p class="fas fa-bars nav_mobile_icon" id="nav_mobile_icon"></p>
+        <div class="left_col" id="left_col">
+            <div class="user_profile">
+                <h2 class="username" id="username">username</h2>
+            </div>
+            <div class="add_folder_btn_box">
+                <button id="add_folder_btn">
+                    <i class="fas fa-plus"></i> New Folder
+                </button>
+            </div>
+            <div class="folders" id="folders"></div>
+            <p class="fas fa-xmark nav_x_mobile_icon" id="nav_x_mobile_icon"></p>
+            <button class="exit_button">Exit</button>
+        </div>
+        <div class="right_col" id="right_col">
+            <div class="notes" id="notes"></div>
+            <div class="editor-wrapper">
+                <textarea id="autoTextarea" placeholder="Yozishni boshlang..."></textarea>
+            
+                <div class="actions">
+                    <button id="code_mode" class="code_mode">Code</button>
+                    <button title="Yuborish" id="textarea_btn">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./functions.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
