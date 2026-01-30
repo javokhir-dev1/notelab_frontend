@@ -16,44 +16,90 @@ const userId = localStorage.getItem("user_id")
 const token = localStorage.getItem("token")
 
 async function loadData() {
-    const { data, error } = await request(`notebooks/user/${userId}/`, "GET", token)
+    const { data, error } = await request(
+        `notebooks/user/${userId}/`,
+        "GET",
+        token
+    )
+
     if (error) {
-        return showToast({ text: error, type: "error", duration: 4000 });
+        return showToast({ text: error, type: "error", duration: 4000 })
     }
-    data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     folders.innerHTML = ""
+
     for (let i = 0; i < data.length; i++) {
-        folders.insertAdjacentHTML("beforeend",
-            `<div class="folder" id="${data[i].id}">
-                    <p class="content"><i class="fas fa-folder"></i> ${data[i].title}</p>
-                    <div class="folder_icon_box">
-                        <p class="folder_pencil fas fa-pencil-alt"></p>
-                        <p class="folder_trash far fa-trash-alt"></p>
-                    </div>
-                </div>`
-        )
+        const folder = document.createElement("div")
+        folder.className = "folder"
+        folder.id = data[i].id
+
+        const content = document.createElement("p")
+        content.className = "content"
+
+        const icon = document.createElement("i")
+        icon.className = "fas fa-folder"
+
+        const titleText = document.createTextNode(" " + data[i].title)
+
+        content.append(icon, titleText)
+
+        const iconBox = document.createElement("div")
+        iconBox.className = "folder_icon_box"
+
+        const pencil = document.createElement("p")
+        pencil.className = "folder_pencil fas fa-pencil-alt"
+
+        const trash = document.createElement("p")
+        trash.className = "folder_trash far fa-trash-alt"
+
+        iconBox.append(pencil, trash)
+
+        folder.append(content, iconBox)
+        folders.appendChild(folder)
     }
 }
+
 
 async function loadDataNotes() {
     const folderId = localStorage.getItem("folderId")
     if (!folderId) return
-    const { data, error } = await request(`notes/user/${userId}/folder/${folderId}`, "GET", token)
+
+    const { data, error } = await request(
+        `notes/user/${userId}/folder/${folderId}`,
+        "GET",
+        token
+    )
+
     if (error) {
-        return showToast({ text: error, type: "error", duration: 4000 });
+        return showToast({ text: error, type: "error", duration: 4000 })
     }
-    data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     notes.innerHTML = ""
+
     for (let i = 0; i < data.length; i++) {
-        notes.insertAdjacentHTML("beforeend",
-            ` <div class="note ${data[i].type == "code" ? "code" : ""}" id="${data[i].id}">
-                    <div class="buttons">
-                        <p class="note_pencil fas fa-pencil-alt"></p>
-                        <p class="note_trash far fa-trash-alt"></p>
-                    </div>
-                    <p class="content" id="content">${data[i].content}</p>
-                </div>`
-        )
+        const note = document.createElement("div")
+        note.className = `note ${data[i].type === "code" ? "code" : ""}`
+        note.id = data[i].id
+
+        const buttons = document.createElement("div")
+        buttons.className = "buttons"
+
+        const pencil = document.createElement("p")
+        pencil.className = "note_pencil fas fa-pencil-alt"
+
+        const trash = document.createElement("p")
+        trash.className = "note_trash far fa-trash-alt"
+
+        buttons.append(pencil, trash)
+
+        const content = document.createElement("p")
+        content.className = "content"
+        content.textContent = data[i].content 
+
+        note.append(buttons, content)
+        notes.appendChild(note)
     }
 }
 
