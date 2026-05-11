@@ -580,3 +580,95 @@
   font-style: italic;
 }
 
+/* ======= Responsive ======= */
+@media (max-width: 768px) {
+  .chat-page {
+    margin-left: 0;
+    padding-top: 56px; /* mobile topbar height */
+    height: 100dvh;
+  }
+
+  .chat-header {
+    padding: 10px 14px;
+  }
+
+  .chat-title { font-size: 15px; }
+  .chat-subtitle { font-size: 11px; }
+
+  .chat-header-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+
+  .chat-messages {
+    padding: 14px 12px 6px;
+    gap: 4px;
+  }
+
+  .note-msg-bubble {
+    max-width: 88%;
+    min-width: 0;
+  }
+
+  .note-msg.code-msg .note-msg-bubble {
+    max-width: 95%;
+  }
+
+  .chat-input-area {
+    padding: 10px 12px 14px;
+  }
+
+  .chat-type-selector {
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .chat-type-selector::-webkit-scrollbar { display: none; }
+
+  .type-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chat-textarea {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .chat-send-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Edit mode on mobile */
+  .note-msg.editing .note-msg-bubble {
+    max-width: 95%;
+  }
+
+  /* Action menu — show on tap, not hover */
+  .note-msg-actions {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-messages {
+    padding: 12px 10px 4px;
+  }
+
+  .note-msg-bubble {
+    max-width: 94%;
+    border-radius: 14px 14px 4px 14px;
+    padding: 10px 12px;
+  }
+
+  .chat-input-area {
+    padding: 8px 10px 12px;
+  }
+}

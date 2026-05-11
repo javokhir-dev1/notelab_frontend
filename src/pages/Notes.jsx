@@ -139,7 +139,7 @@ export default function Notes() {
 
   return (
     <Layout>
-      <div className="page-header flex items-center justify-between">
+      <div className="notes-header">
         <div>
           <h1 className="page-title">📝 Notalar</h1>
           <p className="page-subtitle">{filtered.length} ta nota</p>
@@ -199,15 +199,97 @@ export default function Notes() {
       )}
 
       <style>{`
-        .note-filters { display:flex; gap:8px; margin-bottom:20px; }
-        .filter-btn { padding:8px 16px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text-secondary); font-family:inherit; font-size:13px; font-weight:500; cursor:pointer; transition:all 0.2s; }
-        .filter-btn:hover { background:var(--bg-hover); color:var(--text-primary); }
-        .filter-btn.active { background:var(--accent-dim); color:var(--accent); border-color:var(--accent); }
-        .note-card { cursor:default; }
-        .note-content { font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:12px; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
-        .note-meta { display:flex; align-items:center; justify-content:space-between; padding-top:10px; border-top:1px solid var(--border); }
-        .spin-anim { animation: spin 0.7s linear infinite; }
+        /* === Filters === */
+        .note-filters {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+        .filter-btn {
+          padding: 8px 16px;
+          border-radius: 20px;
+          border: 1px solid var(--border);
+          background: transparent;
+          color: var(--text-secondary);
+          font-family: inherit;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s;
+          white-space: nowrap;
+        }
+        .filter-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .filter-btn.active { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+
+        /* === Note card === */
+        .note-card { cursor: default; }
+        .note-content {
+          font-size: 14px;
+          color: var(--text-secondary);
+          line-height: 1.6;
+          margin-bottom: 12px;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          word-break: break-word;
+        }
+        .note-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 10px;
+          border-top: 1px solid var(--border);
+        }
+
+        /* === Page header responsive === */
+        .notes-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 28px;
+          flex-wrap: wrap;
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+          .note-filters {
+            gap: 6px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            margin-bottom: 16px;
+          }
+          .note-filters::-webkit-scrollbar { display: none; }
+
+          .filter-btn {
+            font-size: 12px;
+            padding: 7px 13px;
+            flex-shrink: 0;
+          }
+
+          .note-content {
+            font-size: 13px;
+            -webkit-line-clamp: 3;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .notes-header {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .notes-header .btn {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
+
     </Layout>
   );
 }

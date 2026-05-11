@@ -36,3 +36,25 @@
   flex-direction: column;
   gap: 12px;
 }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 80px 16px 24px; /* 80px = topbar height + gap */
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 76px 12px 20px;
+  }
+}
